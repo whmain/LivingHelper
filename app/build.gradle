@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.ahern.livinghelper"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -26,4 +26,8 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
+    //沉浸式状态栏
+    compile 'com.jaeger.statusbarutil:library:1.4.0'
+    //底部导航栏
+    compile 'com.ashokvarma.android:bottom-navigation-bar:1.2.0'
 }
