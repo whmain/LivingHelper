@@ -15,7 +15,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#00ffff"
         android:theme="@style/AppTheme.AppBarOverlay"
-        app:title="首页"
+        app:title="生活小助手"
         app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     <android.support.v4.view.ViewPager

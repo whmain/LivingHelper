@@ -5,4 +5,16 @@
     <!-- MainActivity -->
     <string name="tab_title_recreation">娱乐</string>
     <string name="tab_title_tools">工具</string>
+
+
+    <!-- RecreationFragment -->
+    <string name="item_history">历史上的今天</string>
+    <string name="item_joke">笑话大全</string>
+    <string name="item_oneiromancy">周公解梦</string>
+    <string name="item_constellation">星座运势</string>
+
+    <string name="item_introduction_history">回顾历史的长河，历史是生活的一面镜子</string>
+    <string name="item_introduction_joke">搜集网络幽默、搞笑、内涵段子，不间断更新</string>
+    <string name="item_introduction_oneiromancy">十二星座每日、每月、每年运势</string>
+    <string name="item_introduction_constellation">周公解梦,周公解梦大全,周公解梦查询，免费周公解梦</string>
 </resources>

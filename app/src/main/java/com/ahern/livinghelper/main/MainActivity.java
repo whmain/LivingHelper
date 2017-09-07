@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.ahern.livinghelper.R;
 import com.ahern.livinghelper.main.adapter.MainPageAdapter;
-import com.ahern.livinghelper.recreation.RecreationFragment;
+import com.ahern.livinghelper.recreation.main.ui.RecreationFragment;
 import com.ahern.livinghelper.tools.ToolsFragment;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -20,28 +20,43 @@ import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity{
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
-    private ViewPager mViewPager;
-    private BottomNavigationBar mBottomNavigationBar;
+public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.viewPager)
+    ViewPager mViewPager;
+    @BindView(R.id.tabBar)
+    BottomNavigationBar mBottomNavigationBar;
+
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        StatusBarUtil.setColor(this, Color.parseColor("#00FFFF"),0);
+        unbinder = ButterKnife.bind(this);
+        StatusBarUtil.setColor(this, Color.parseColor("#00FFFF"), 0);
 
         initView();
     }
 
     private void initView() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
-        mBottomNavigationBar = (BottomNavigationBar) findViewById(R.id.tabBar);
+        setSupportActionBar(mToolbar);
+
         initBottomNavigationBar();
         initViewPager();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 
     /**
@@ -63,12 +78,12 @@ public class MainActivity extends AppCompatActivity{
                 .initialise();
     }
 
-    public void initViewPager(){
+    public void initViewPager() {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new RecreationFragment());
         fragments.add(new ToolsFragment());
 
-        mViewPager.setAdapter(new MainPageAdapter(getSupportFragmentManager(),fragments));
+        mViewPager.setAdapter(new MainPageAdapter(getSupportFragmentManager(), fragments));
         mViewPager.addOnPageChangeListener(mPageChangeListener);
     }
 
@@ -112,8 +127,7 @@ public class MainActivity extends AppCompatActivity{
     };
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         return true;
@@ -121,13 +135,13 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.action_share:
-                Toast.makeText(this,"share",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "share", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_navigation:
-                Toast.makeText(this,"navigation",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "navigation", Toast.LENGTH_SHORT).show();
                 break;
         }
 
