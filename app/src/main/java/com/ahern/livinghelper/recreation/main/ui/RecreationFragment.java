@@ -15,6 +15,7 @@ import com.ahern.livinghelper.common.model.ItemEntity;
 import com.ahern.livinghelper.recreation.constellation.ui.ConstellationActivity;
 import com.ahern.livinghelper.recreation.history.ui.HistoryActivity;
 import com.ahern.livinghelper.recreation.main.adapter.RecreationAdapter;
+import com.ahern.livinghelper.recreation.turingchat.ui.TuringChatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class RecreationFragment extends BaseFragment {
         mRecreationRv.setLayoutManager(layoutManager);
         List<ItemEntity> items = new ArrayList<>();
         items.add(new ItemEntity(getResources().getString(R.string.item_history),R.drawable.ic_history,getResources().getString(R.string.item_introduction_history)));
-        items.add(new ItemEntity(getResources().getString(R.string.item_joke),R.drawable.ic_joke,getResources().getString(R.string.item_introduction_joke)));
+        items.add(new ItemEntity(getResources().getString(R.string.item_turing),R.drawable.ic_turing,getResources().getString(R.string.item_introduction_turing)));
         items.add(new ItemEntity(getResources().getString(R.string.item_constellation),R.drawable.ic_constellation,getResources().getString(R.string.item_introduction_constellation)));
         items.add(new ItemEntity(getResources().getString(R.string.item_oneiromancy),R.drawable.ic_oneiromancy,getResources().getString(R.string.item_introduction_oneiromancy)));
         RecreationAdapter adapter = new RecreationAdapter(items);
@@ -85,6 +86,9 @@ public class RecreationFragment extends BaseFragment {
             switch (position){
                 case 0:
                     startActivity(new Intent(getActivity(), HistoryActivity.class));
+                    break;
+                case 1:
+                    startActivity(new Intent(getActivity(), TuringChatActivity.class));
                     break;
                 case 3:
                     startActivity(new Intent(getActivity(), ConstellationActivity.class));

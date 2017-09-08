@@ -9,23 +9,23 @@
     tools:context="com.ahern.livinghelper.recreation.constellation.ui.DreamDetailActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/color_tabbar_default"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:navigationIcon="@drawable/ic_back"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/color_tabbar_default"
+    android:theme="@style/AppTheme.AppBarOverlay"
+    app:navigationIcon="@drawable/ic_back"
+    app:popupTheme="@style/AppTheme.PopupOverlay">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="梦的含义"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"/>
-    </android.support.v7.widget.Toolbar>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="梦的含义"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"/>
+</android.support.v7.widget.Toolbar>
 
     <ProgressBar
         android:id="@+id/pb_dream_detail"

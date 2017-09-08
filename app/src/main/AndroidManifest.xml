@@ -3,6 +3,7 @@
           package="com.ahern.livinghelper">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:name=".base.LivingHelperApplication"
@@ -36,6 +37,10 @@
         <activity android:name=".recreation.constellation.ui.ConstellationActivity">
         </activity>
         <activity android:name=".recreation.constellation.ui.DreamDetailActivity">
+        </activity>
+        <activity android:name=".recreation.turingchat.ui.TuringChatActivity">
+        </activity>
+        <activity android:name=".recreation.turingchat.ui.ChatWebActivity">
         </activity>
     </application>
 
