@@ -1,8 +1,8 @@
 package com.ahern.livinghelper.recreation.history.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +53,8 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+//        holder.mLayout.setCardBackgroundColor(Color.parseColor(ColorUtil.randomColor()));
         holder.mTitleTv.setText(list.get(position).getTitle());
-//        holder.mIconIv.setImageResource(list.get(position).getImageID());
         holder.mTimeTv.setText(String.format("时间:%d-%d-%d",list.get(position).getYear(),list.get(position).getMonth(),list.get(position).getDay()));
         holder.itemView.setOnClickListener(this);
         holder.itemView.setTag(position);
@@ -73,17 +73,19 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         public ImageView mIconIv;
         public TextView mTitleTv;
         public TextView mTimeTv;
+        public CardView mLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             mIconIv = (ImageView) itemView.findViewById(R.id.iv_recreation_adapter_item_icon);
             mTitleTv = (TextView) itemView.findViewById(R.id.tv_recreation_adapter_item_title);
             mTimeTv = (TextView) itemView.findViewById(R.id.tv_recreation_adapter_item_introduction);
+            mLayout = (CardView) itemView.findViewById(R.id.cv_recreation_layout);
         }
     }
 
     @Override
     public void onClick(View view) {
-        Log.d(LogTag,"点击事件点点滴滴");
+
         if (mItemClickListener != null){
             mItemClickListener.onItemClick(view,(int)view.getTag());
 

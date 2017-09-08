@@ -3,17 +3,17 @@ package com.ahern.livinghelper.recreation.history.ui;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.ahern.livinghelper.R;
 import com.ahern.livinghelper.common.utils.JsonUtil;
-import com.ahern.livinghelper.common.utils.LogUtil;
 import com.ahern.livinghelper.recreation.history.adapter.HistoryListAdapter;
 import com.ahern.livinghelper.recreation.history.model.HistoryListEntity;
 import com.ahern.livinghelper.recreation.history.model.HistoryRequestDataEntity;
@@ -40,6 +40,8 @@ public class HistoryActivity extends AppCompatActivity {
     MaterialSpinner mHistoryDayMs;
     @BindView(R.id.rv_history_list)
     RecyclerView mHistoryListRv;
+    @BindView(R.id.pb_history)
+    ProgressBar mHistoryPb;
     private Unbinder unbinder;
     private String[] months = {"1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月",};
     private String mHistroyApiKey;
@@ -53,7 +55,7 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         unbinder = ButterKnife.bind(this);
-        StatusBarUtil.setColor(this, Color.parseColor("#00FFFF"), 0);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.color_tabbar_default), 0);
         initData();
     }
 
@@ -65,13 +67,26 @@ public class HistoryActivity extends AppCompatActivity {
 
     public void initData() {
         mHistroyApiKey = getApiKey();
+
         setSupportActionBar(mToolbarHistory);
+        mToolbarHistory.setNavigationOnClickListener(mClickListener);
+//        去掉默认title
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         setSpinner();
         initRecyclerView();
+
     }
 
-    public void initRecyclerView(){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+    View.OnClickListener mClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            HistoryActivity.this.finish();
+        }
+    };
+
+    public void initRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mHistoryListRv.setLayoutManager(layoutManager);
         mAdapter = new HistoryListAdapter(this);
         mHistoryListRv.setAdapter(mAdapter);
@@ -86,6 +101,7 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
                 mHistoryDayMs.setItems(getDays(months[position]));
+
                 mMonthCurrentPosition = position;
             }
         });
@@ -95,10 +111,13 @@ public class HistoryActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(MaterialSpinner view, final int position, long id, String item) {
+                mHistoryPb.setVisibility(View.VISIBLE);
                 request(mMonthCurrentPosition + 1 + "", position + 1 + "");
 
             }
         });
+
+        request("1", "1");
     }
 
     public String[] getDays(String month) {
@@ -120,8 +139,7 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
 
-
-    public void request(String month,String day){
+    public void request(String month, String day) {
         String url = "http://api.juheapi.com/japi/toh";
         OkHttpUtils
                 .get()
@@ -139,10 +157,10 @@ public class HistoryActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        LogUtil.d(LogTag,response,mOpenLog);
+                        mHistoryPb.setVisibility(View.GONE);
                         HistoryRequestDataEntity entity = (HistoryRequestDataEntity) JsonUtil.stringToObject(response, HistoryRequestDataEntity.class);
                         List<HistoryListEntity> list = entity.getResult();
-                        mAdapter.addData(list,true);
+                        mAdapter.addData(list, true);
                         mAdapter.notifyDataSetChanged();
                         mHistoryListRv.smoothScrollToPosition(0);
                     }
@@ -152,8 +170,8 @@ public class HistoryActivity extends AppCompatActivity {
     HistoryListAdapter.OnItemClickListener mItemClickListener = new HistoryListAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            Intent intent = new Intent(HistoryActivity.this,HistoryDetailActivity.class);
-            intent.putExtra("eventId",mAdapter.getListItem(position).getId());
+            Intent intent = new Intent(HistoryActivity.this, HistoryDetailActivity.class);
+            intent.putExtra("eventId", mAdapter.getListItem(position).getId());
             startActivity(intent);
         }
     };

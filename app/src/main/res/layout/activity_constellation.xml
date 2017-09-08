@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_constellation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ahern.livinghelper.recreation.constellation.ui.ConstellationActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_tabbar_default"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:navigationIcon="@drawable/ic_back">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="周公解梦"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center"/>
+   </android.support.v7.widget.Toolbar>
+    <SearchView
+        android:id="@+id/sv_constellation_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:imeOptions="actionSearch"
+        android:queryHint="请输入关键词,如蛇、黄金、红薯等..."/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_constellation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:id="@+id/ll_constellation_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_failed"
+                android:layout_gravity="center_horizontal"
+                />
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="抱歉,您的梦暂时无法解答,请换一个关键词"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pb_constellation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -18,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 super.run();
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

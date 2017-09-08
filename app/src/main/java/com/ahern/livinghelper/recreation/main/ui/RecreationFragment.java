@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.ahern.livinghelper.R;
 import com.ahern.livinghelper.base.BaseFragment;
 import com.ahern.livinghelper.common.model.ItemEntity;
+import com.ahern.livinghelper.recreation.constellation.ui.ConstellationActivity;
 import com.ahern.livinghelper.recreation.history.ui.HistoryActivity;
 import com.ahern.livinghelper.recreation.main.adapter.RecreationAdapter;
 
@@ -84,6 +85,9 @@ public class RecreationFragment extends BaseFragment {
             switch (position){
                 case 0:
                     startActivity(new Intent(getActivity(), HistoryActivity.class));
+                    break;
+                case 3:
+                    startActivity(new Intent(getActivity(), ConstellationActivity.class));
                     break;
             }
         }

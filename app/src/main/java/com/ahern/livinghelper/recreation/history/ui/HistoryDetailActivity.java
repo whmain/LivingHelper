@@ -3,11 +3,12 @@ package com.ahern.livinghelper.recreation.history.ui;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,15 +48,20 @@ public class HistoryDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_detail);
         unbinder = ButterKnife.bind(this);
-        StatusBarUtil.setColor(this, Color.parseColor("#00FFFF"), 0);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.color_tabbar_default), 0);
         initData();
     }
 
     public void initData() {
         Intent intent = getIntent();
         mEventId = intent.getStringExtra("eventId");
-        Log.d("Detail",mEventId+"------------aaaaa");
+
         setSupportActionBar(mToolBar);
+        mToolBar.setNavigationOnClickListener(mClickListener);
+//        去掉默认title
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         request(mEventId);
 
     }
@@ -66,6 +72,13 @@ public class HistoryDetailActivity extends AppCompatActivity {
         super.onDestroy();
         unbinder.unbind();
     }
+
+    View.OnClickListener mClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            HistoryDetailActivity.this.finish();
+        }
+    };
 
     public String getApiKey() {
         ApplicationInfo appInfo = null;

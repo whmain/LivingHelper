@@ -13,7 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#00ffff"
+        android:background="@color/color_tabbar_default"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:title="生活小助手"
         app:popupTheme="@style/AppTheme.PopupOverlay"/>

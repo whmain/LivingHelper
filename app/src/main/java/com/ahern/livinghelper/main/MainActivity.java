@@ -1,8 +1,8 @@
 package com.ahern.livinghelper.main;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
-        StatusBarUtil.setColor(this, Color.parseColor("#00FFFF"), 0);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.color_tabbar_default), 0);
 
         initView();
     }

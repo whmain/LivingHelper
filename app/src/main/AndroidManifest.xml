@@ -14,6 +14,9 @@
         <meta-data
             android:name="history_key"
             android:value="221fa66862709115b42396c798ff67ee"/>
+        <meta-data
+            android:name="dream_key"
+            android:value="468ea20f74584b11140e7dfea9cfc952"/>
 
         <activity
             android:name=".main.SplashActivity"
@@ -29,6 +32,10 @@
         <activity android:name=".recreation.history.ui.HistoryActivity">
         </activity>
         <activity android:name=".recreation.history.ui.HistoryDetailActivity">
+        </activity>
+        <activity android:name=".recreation.constellation.ui.ConstellationActivity">
+        </activity>
+        <activity android:name=".recreation.constellation.ui.DreamDetailActivity">
         </activity>
     </application>
 

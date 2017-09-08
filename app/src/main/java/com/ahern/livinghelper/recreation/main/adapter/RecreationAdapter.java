@@ -1,5 +1,6 @@
 package com.ahern.livinghelper.recreation.main.adapter;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class RecreationAdapter extends RecyclerView.Adapter<RecreationAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+//        holder.mLayout.setCardBackgroundColor(Color.parseColor(ColorUtil.randomColor()));
         holder.mTitleTv.setText(list.get(position).getTitle());
         holder.mIconIv.setImageResource(list.get(position).getImageID());
         holder.mIntroductionTv.setText(list.get(position).getIntroduction());
@@ -54,11 +56,13 @@ public class RecreationAdapter extends RecyclerView.Adapter<RecreationAdapter.Vi
         public ImageView mIconIv;
         public TextView mTitleTv;
         public TextView mIntroductionTv;
+        public CardView mLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             mIconIv = (ImageView) itemView.findViewById(R.id.iv_recreation_adapter_item_icon);
             mTitleTv = (TextView) itemView.findViewById(R.id.tv_recreation_adapter_item_title);
             mIntroductionTv = (TextView) itemView.findViewById(R.id.tv_recreation_adapter_item_introduction);
+            mLayout = (CardView) itemView.findViewById(R.id.cv_recreation_layout);
         }
     }
 

@@ -12,10 +12,19 @@
         android:id="@+id/toolbar_history_detail"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#00ffff"
+        android:background="@color/color_tabbar_default"
         android:theme="@style/AppTheme.AppBarOverlay"
-        app:title="事件详情"
-        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:navigationIcon="@drawable/ic_back">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="历史详情"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"/>
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -54,14 +63,22 @@
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/iv_history_detail_pic"
                     android:text="回顾历史的长河，历史是生活的一面镜子"
-                    android:textColor="#333333"
+                    android:textColor="#000000"
                     android:textSize="16sp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#666666"/>
+
             </RelativeLayout>
 
             <TextView
                 android:id="@+id/tv_history_detail_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:textColor="#000000"
+                android:textSize="14sp"/>
         </LinearLayout>
 
 
