@@ -42,11 +42,17 @@
         </activity>
         <activity android:name=".recreation.turingchat.ui.ChatWebActivity">
         </activity>
-        <activity android:name=".recreation.news.ui.NewsListActivity">
-        </activity>
+
         <activity android:name=".recreation.cookbook.ui.CookBookListActivity">
         </activity>
         <activity android:name=".recreation.cookbook.ui.CookDetailActivity">
+        </activity>
+        <activity android:name=".base.TestActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
         </activity>
     </application>
 

@@ -5,17 +5,17 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
 import com.ahern.livinghelper.R;
 import com.ahern.livinghelper.common.utils.JsonUtil;
-import com.ahern.livinghelper.common.view.AdaptHeightRecyclerView;
 import com.ahern.livinghelper.recreation.cookbook.adapter.CookBookListAdapter;
 import com.ahern.livinghelper.recreation.cookbook.model.CookBookClassifyRequestEntity;
 import com.ahern.livinghelper.recreation.cookbook.model.CookBookListEntity;
@@ -50,13 +50,16 @@ public class CookBookListActivity extends AppCompatActivity {
     @BindView(R.id.iv_cookbook_search_name)
     ImageView mSearchNameIv;
     @BindView(R.id.recycler_cookbook_list)
-    AdaptHeightRecyclerView mCookListRv;
-    @BindView(R.id.scrollview_cookbook)
-    ScrollView mMainCookBookSv;
+    RecyclerView mCookListRv;
+    //    @BindView(R.id.scrollview_cookbook)
+//    ScrollView mMainCookBookSv;
     @BindView(R.id.pb_cookbook_list)
     ProgressBar mCookbookPb;
     @BindView(R.id.activity_cook_book_list)
     RelativeLayout activityCookBookList;
+    @BindView(R.id.ll_cookbook)
+    LinearLayout mMainCookbookLl;
+
     private Unbinder unbinder;
 
     private List<CookBookClassifyRequestEntity.ResultBeanX.ResultBean> mCookBookClassify;
@@ -82,7 +85,7 @@ public class CookBookListActivity extends AppCompatActivity {
 
     public void initView() {
         mCookbookPb.setVisibility(View.VISIBLE);
-        mMainCookBookSv.setVisibility(View.GONE);
+        mMainCookbookLl.setVisibility(View.GONE);
     }
 
     public void initData() {
@@ -159,14 +162,15 @@ public class CookBookListActivity extends AppCompatActivity {
         }
     };
 
-//item的点击监听事件
+    //item的点击监听事件
     CookBookListAdapter.OnItemClickListener mOnItemClickListener = new CookBookListAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            Intent intent = new Intent(CookBookListActivity.this,CookDetailActivity.class);
-
+            Intent intent = new Intent(CookBookListActivity.this, CookDetailActivity.class);
+            intent.putExtra("cook_detail", mAdapter.getItem(position));
+            startActivity(intent);
         }
-    } ;
+    };
 
     public void requestCookBookClassify() {
         String url = "https://way.jd.com/jisuapi/recipe_class";
@@ -204,12 +208,12 @@ public class CookBookListActivity extends AppCompatActivity {
                         }
 
                         mCookbookPb.setVisibility(View.GONE);
-                        mMainCookBookSv.setVisibility(View.VISIBLE);
+                        mMainCookbookLl.setVisibility(View.VISIBLE);
                     }
                 });
     }
 
-    public void requestcookBookListByClassId(String classId){
+    public void requestcookBookListByClassId(String classId) {
         //接口：https://wx.jcloud.com/market/datas/18/11072
         String url = "https://way.jd.com/jisuapi/byclass";
         OkHttpUtils
@@ -233,7 +237,7 @@ public class CookBookListActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONObject result = jsonObject.getJSONObject("result");
                             String status = result.getString("status");
-                            if (!status.equals("0")){
+                            if (!status.equals("0")) {
                                 List<CookBookListEntity.ResultBeanX.ResultBean.ListBean> list = new ArrayList<CookBookListEntity.ResultBeanX.ResultBean.ListBean>();
                                 mAdapter.addAll(list);
                                 return;
@@ -242,9 +246,9 @@ public class CookBookListActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         CookBookListEntity entity = (CookBookListEntity) JsonUtil.stringToObject(response, CookBookListEntity.class);
-                        if (entity.getCode().equals("10000")){
-                            if (entity.getResult().getResult()!= null){
-                                List<CookBookListEntity.ResultBeanX.ResultBean.ListBean> list =entity.getResult().getResult().getList();
+                        if (entity.getCode().equals("10000")) {
+                            if (entity.getResult().getResult() != null) {
+                                List<CookBookListEntity.ResultBeanX.ResultBean.ListBean> list = entity.getResult().getResult().getList();
                                 mAdapter.addAll(list);
                                 mCookListRv.smoothScrollToPosition(0);
                             }
@@ -253,7 +257,7 @@ public class CookBookListActivity extends AppCompatActivity {
                 });
     }
 
-    public void requestcookBookListByName(String name){
+    public void requestcookBookListByName(String name) {
 //接口：https://wx.jcloud.com/market/datas/18/11072
         String url = "https://way.jd.com/jisuapi/search";
         OkHttpUtils
@@ -276,7 +280,7 @@ public class CookBookListActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONObject result = jsonObject.getJSONObject("result");
                             String status = result.getString("status");
-                            if (!status.equals("0")){
+                            if (!status.equals("0")) {
                                 List<CookBookListEntity.ResultBeanX.ResultBean.ListBean> list = new ArrayList<CookBookListEntity.ResultBeanX.ResultBean.ListBean>();
                                 mAdapter.addAll(list);
                                 return;
@@ -286,9 +290,9 @@ public class CookBookListActivity extends AppCompatActivity {
                         }
 
                         CookBookListEntity entity = (CookBookListEntity) JsonUtil.stringToObject(response, CookBookListEntity.class);
-                        if (entity.getCode().equals("10000")){
-                            if (entity.getResult().getResult()!= null){
-                                List<CookBookListEntity.ResultBeanX.ResultBean.ListBean> list =entity.getResult().getResult().getList();
+                        if (entity.getCode().equals("10000")) {
+                            if (entity.getResult().getResult() != null) {
+                                List<CookBookListEntity.ResultBeanX.ResultBean.ListBean> list = entity.getResult().getResult().getList();
                                 mAdapter.addAll(list);
                                 mCookListRv.smoothScrollToPosition(0);
                             }

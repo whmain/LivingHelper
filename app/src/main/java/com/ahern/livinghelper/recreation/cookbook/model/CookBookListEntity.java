@@ -8,7 +8,7 @@ import java.util.List;
  * @email：Ahern.h.wang@emore-smart.com
  */
 
-public class CookBookListEntity implements Serializable{
+public class CookBookListEntity {
 
     /**
      * code : 10000
@@ -114,7 +114,7 @@ public class CookBookListEntity implements Serializable{
                 this.list = list;
             }
 
-            public static class ListBean {
+            public static class ListBean implements Serializable{
                 /**
                  * classid : 24
                  * process : [{"pcontent":"先把虾清洗一下。","pic":"http://api.jisuapi.com/recipe/upload/20160720/141253_70570.jpg"},{"pcontent":"再剪去虾须，将虾背剪开，抽出沙线。<br />\n","pic":"http://api.jisuapi.com/recipe/upload/20160720/141254_48259.jpg"},{"pcontent":"清理好的虾。","pic":"http://api.jisuapi.com/recipe/upload/20160720/141254_77549.jpg"},{"pcontent":"葱姜蒜洗净后切成末。","pic":"http://api.jisuapi.com/recipe/upload/20160720/141254_74719.jpg"},{"pcontent":"锅中放入比平时炒菜略多一点的油， 油热后放入大虾，待虾的一面变红后放入葱姜末，然后翻面。 ","pic":"http://api.jisuapi.com/recipe/upload/20160720/141254_81174.jpg"},{"pcontent":"放入少许番茄酱炒匀。","pic":"http://api.jisuapi.com/recipe/upload/20160720/141254_43197.jpg"},{"pcontent":"烹入料酒。 ","pic":"http://api.jisuapi.com/recipe/upload/20160720/141254_98717.jpg"},{"pcontent":"加入盐、糖、高汤烧开。","pic":"http://api.jisuapi.com/recipe/upload/20160720/141254_62158.jpg"},{"pcontent":"烧开后改小火，盖上锅盖焖约3分钟。 ","pic":"http://api.jisuapi.com/recipe/upload/20160720/141254_12941.jpg"},{"pcontent":"转中火收汁微干，淋入几滴醋即可。 ","pic":"http://api.jisuapi.com/recipe/upload/20160720/141255_92532.jpg"}]
@@ -229,7 +229,7 @@ public class CookBookListEntity implements Serializable{
                     this.material = material;
                 }
 
-                public static class ProcessBean {
+                public static class ProcessBean implements Serializable{
                     /**
                      * pcontent : 先把虾清洗一下。
                      * pic : http://api.jisuapi.com/recipe/upload/20160720/141253_70570.jpg
@@ -255,7 +255,7 @@ public class CookBookListEntity implements Serializable{
                     }
                 }
 
-                public static class MaterialBean {
+                public static class MaterialBean implements Serializable{
                     /**
                      * amount : 适量
                      * mname : 油

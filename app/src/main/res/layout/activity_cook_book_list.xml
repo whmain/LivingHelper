@@ -27,15 +27,17 @@
             android:layout_gravity="center"/>
     </android.support.v7.widget.Toolbar>
 
-    <ScrollView
-        android:id="@+id/scrollview_cookbook"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar_cookbook_list">
+    <!--<ScrollView-->
+        <!--android:id="@+id/scrollview_cookbook"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/toolbar_cookbook_list">-->
         <LinearLayout
+            android:id="@+id/ll_cookbook"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_below="@+id/toolbar_cookbook_list">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -101,13 +103,13 @@
 
 
 
-            <com.ahern.livinghelper.common.view.AdaptHeightRecyclerView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_cookbook_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
         </LinearLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 
     <ProgressBar
         android:id="@+id/pb_cookbook_list"
