@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,10 +20,12 @@ import android.widget.TextView;
 
 import com.ahern.livinghelper.R;
 import com.ahern.livinghelper.common.utils.JsonUtil;
+import com.ahern.livinghelper.common.utils.LogUtil;
 import com.ahern.livinghelper.recreation.turingchat.adapter.ChatAdapter;
 import com.ahern.livinghelper.recreation.turingchat.model.ChatModel;
 import com.ahern.livinghelper.recreation.turingchat.model.ItemModel;
 import com.ahern.livinghelper.recreation.turingchat.model.TuringRequestDataEntity;
+import com.jaeger.library.StatusBarUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -46,7 +49,7 @@ public class TuringChatActivity extends AppCompatActivity {
 
     private Unbinder unbinder;
     private ChatAdapter adapter;
-    private String content;
+//    private String content;
     private String mDeviceId;
 
     @Override
@@ -54,6 +57,7 @@ public class TuringChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turing_chat);
         unbinder = ButterKnife.bind(this);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.color_tabbar_default), 0);
         initData();
     }
 
@@ -96,7 +100,7 @@ public class TuringChatActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            content = editable.toString().trim();
+//            content = editable.toString().trim();
         }
     };
 
@@ -111,15 +115,18 @@ public class TuringChatActivity extends AppCompatActivity {
         @TargetApi(Build.VERSION_CODES.M)
         @Override
         public void onClick(View view) {
+            String sendMessage=mSendContentEt.getText().toString().trim();
+
             ArrayList<ItemModel> data = new ArrayList<>();
             ChatModel model = new ChatModel();
-            model.setContent(content);
+            model.setContent(sendMessage);
             data.add(new ItemModel(ItemModel.CHAT_B, model));
             adapter.addAll(data);
             mSendContentEt.setText("");
             hideKeyBorad(mSendContentEt);
             mChatListRv.smoothScrollToPosition(adapter.getItemCount());
-            request(content);
+
+            request(sendMessage);
         }
     };
 
@@ -138,49 +145,63 @@ public class TuringChatActivity extends AppCompatActivity {
 
     public void request(String sendMessageByB) {
 //       接口说明地址 https://wx.jcloud.com/market/datas/18/10659
+        LogUtil.d("Turing",sendMessageByB,true);
         String url = "https://way.jd.com/turing/turing";
 
-        OkHttpUtils
-                .get()
-                .url(url)
-                .addParams("info", sendMessageByB)
-                .addParams("loc", "")
-                .addParams("userid", mDeviceId)  //
-                .addParams("appkey", "8ce41956dadc4e4630d78429c222609e")
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
 
-                    }
+            OkHttpUtils
+                    .get()
+                    .url(url)
+                    .addParams("info",sendMessageByB)
+                    .addParams("loc", "")
+                    .addParams("userid", "222")  //
+                    .addParams("appkey", "8ce41956dadc4e4630d78429c222609e")
+                    .build()
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
 
-                    @Override
-                    public void onResponse(String response, int id) {
-                        TuringRequestDataEntity entity = (TuringRequestDataEntity) JsonUtil.stringToObject(response, TuringRequestDataEntity.class);
-                        switch (Integer.parseInt(entity.getCode())) {
-                            case 10000:
-                                //请求成功
-                                ArrayList<ItemModel> data = new ArrayList<>();
-                                ChatModel model = new ChatModel();
-                                model.setContent(entity.getResult().getText());
-                                model.setUrl(entity.getResult().getUrl());
-                                data.add(new ItemModel(ItemModel.CHAT_A, model));
-                                adapter.addAll(data);
-                                mChatListRv.smoothScrollToPosition(adapter.getItemCount());
-                                break;
-                            case 10040:
-                                //超过每天限量，请明天继续
-                                break;
                         }
 
-                    }
-                });
+                        @Override
+                        public void onResponse(String response, int id) {
+                            TuringRequestDataEntity entity = (TuringRequestDataEntity) JsonUtil.stringToObject(response, TuringRequestDataEntity.class);
+                            switch (Integer.parseInt(entity.getCode())) {
+                                case 10000:
+                                    //请求成功
+                                    ArrayList<ItemModel> data = new ArrayList<>();
+                                    ChatModel model = new ChatModel();
+                                    model.setContent(entity.getResult().getText());
+                                    model.setUrl(entity.getResult().getUrl());
+                                    data.add(new ItemModel(ItemModel.CHAT_A, model));
+                                    adapter.addAll(data);
+                                    mChatListRv.smoothScrollToPosition(adapter.getItemCount());
+                                    break;
+                                case 10040:
+                                    //超过每天限量，请明天继续
+                                    //请求成功
+                                    ArrayList<ItemModel> data2 = new ArrayList<>();
+                                    ChatModel model2 = new ChatModel();
+                                    model2.setContent("亲,小图今天和您聊天很长时间了,要去休息了,明天再聊(｀・ω・´)");
+                                    data2.add(new ItemModel(ItemModel.CHAT_A, model2));
+                                    adapter.addAll(data2);
+                                    mChatListRv.smoothScrollToPosition(adapter.getItemCount());
+                                    break;
+                            }
+
+                        }
+                    });
+
     }
 
 
     ChatAdapter.OnURLClickListener mOnURLClickListener = new ChatAdapter.OnURLClickListener() {
         @Override
         public void onURLClick(String url) {
+
+//            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//            startActivity(intent);
+
             Intent intent = new Intent(TuringChatActivity.this, ChatWebActivity.class);
             intent.putExtra("url", url);
             startActivity(intent);

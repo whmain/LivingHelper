@@ -42,6 +42,12 @@
         </activity>
         <activity android:name=".recreation.turingchat.ui.ChatWebActivity">
         </activity>
+        <activity android:name=".recreation.news.ui.NewsListActivity">
+        </activity>
+        <activity android:name=".recreation.cookbook.ui.CookBookListActivity">
+        </activity>
+        <activity android:name=".recreation.cookbook.ui.CookDetailActivity">
+        </activity>
     </application>
 
 </manifest>

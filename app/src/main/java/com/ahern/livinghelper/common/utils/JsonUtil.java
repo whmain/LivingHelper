@@ -1,6 +1,7 @@
 package com.ahern.livinghelper.common.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -15,7 +16,6 @@ import java.util.List;
 
 public class JsonUtil {
     private static Gson mGson = new Gson();
-
     /**
      * 将json字符串转化成实体对象
      * @param json
@@ -23,8 +23,10 @@ public class JsonUtil {
      * @return
      */
     public static Object stringToObject( String json , Class classOfT){
-        return  mGson.fromJson( json , classOfT ) ;
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        return  gson.fromJson( json , classOfT ) ;
     }
+
 
     /**
      * 将对象准换为json字符串 或者 把list 转化成json
@@ -52,4 +54,6 @@ public class JsonUtil {
         }
         return list ;
     }
+
+
 }

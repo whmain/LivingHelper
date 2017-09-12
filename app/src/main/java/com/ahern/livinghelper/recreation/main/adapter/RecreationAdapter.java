@@ -2,7 +2,6 @@ package com.ahern.livinghelper.recreation.main.adapter;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +67,6 @@ public class RecreationAdapter extends RecyclerView.Adapter<RecreationAdapter.Vi
 
     @Override
     public void onClick(View view) {
-        Log.d(LogTag,"点击事件点点滴滴");
         if (mItemClickListener != null){
             mItemClickListener.onItemClick(view,(int)view.getTag());
 

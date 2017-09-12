@@ -8,19 +8,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.ahern.livinghelper.recreation.turingchat.ui.ChatWebActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_chat_web"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/color_tabbar_default"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:navigationIcon="@drawable/ic_back"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
 
-    </android.support.v7.widget.Toolbar>
 
-    <WebView
-        android:id="@+id/web_view_chat"
+    <LinearLayout
+        android:id="@+id/ll_web_page"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>
+
 </LinearLayout>

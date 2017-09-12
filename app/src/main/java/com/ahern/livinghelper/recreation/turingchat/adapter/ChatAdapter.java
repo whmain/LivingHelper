@@ -103,6 +103,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BaseAdapter> {
             final ChatModel model = (ChatModel) object;
             tv.setText(model.getContent());
             if (model.getUrl()!=null && !model.getUrl().equals("")){
+                tv_link.setVisibility(View.VISIBLE);
                 tv_link.setText(model.getUrl());
                 tv_link.setVisibility(View.VISIBLE);
                 tv_link.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +114,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BaseAdapter> {
                         }
                     }
                 });
+            }else{
+                tv_link.setVisibility(View.GONE);
             }
         }
     }

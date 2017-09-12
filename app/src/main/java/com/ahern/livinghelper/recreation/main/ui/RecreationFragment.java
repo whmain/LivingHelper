@@ -13,6 +13,7 @@ import com.ahern.livinghelper.R;
 import com.ahern.livinghelper.base.BaseFragment;
 import com.ahern.livinghelper.common.model.ItemEntity;
 import com.ahern.livinghelper.recreation.constellation.ui.ConstellationActivity;
+import com.ahern.livinghelper.recreation.cookbook.ui.CookBookListActivity;
 import com.ahern.livinghelper.recreation.history.ui.HistoryActivity;
 import com.ahern.livinghelper.recreation.main.adapter.RecreationAdapter;
 import com.ahern.livinghelper.recreation.turingchat.ui.TuringChatActivity;
@@ -59,11 +60,11 @@ public class RecreationFragment extends BaseFragment {
         List<ItemEntity> items = new ArrayList<>();
         items.add(new ItemEntity(getResources().getString(R.string.item_history),R.drawable.ic_history,getResources().getString(R.string.item_introduction_history)));
         items.add(new ItemEntity(getResources().getString(R.string.item_turing),R.drawable.ic_turing,getResources().getString(R.string.item_introduction_turing)));
-        items.add(new ItemEntity(getResources().getString(R.string.item_constellation),R.drawable.ic_constellation,getResources().getString(R.string.item_introduction_constellation)));
+        items.add(new ItemEntity(getResources().getString(R.string.item_cookbook),R.drawable.ic_cookbook,getResources().getString(R.string.item_introduction_cookbook)));
         items.add(new ItemEntity(getResources().getString(R.string.item_oneiromancy),R.drawable.ic_oneiromancy,getResources().getString(R.string.item_introduction_oneiromancy)));
         RecreationAdapter adapter = new RecreationAdapter(items);
 //       设置item间距
-//        SpaceItemDecoration decoration = new SpaceItemDecoration(20);
+//        SpaceItemDecoration decoration = new SpaceItemDecoration(0);
 //        mRecreationRv.addItemDecoration(decoration);
 
         mRecreationRv.setAdapter(adapter);
@@ -89,6 +90,9 @@ public class RecreationFragment extends BaseFragment {
                     break;
                 case 1:
                     startActivity(new Intent(getActivity(), TuringChatActivity.class));
+                    break;
+                case 2:
+                    startActivity(new Intent(getActivity(), CookBookListActivity.class));
                     break;
                 case 3:
                     startActivity(new Intent(getActivity(), ConstellationActivity.class));
