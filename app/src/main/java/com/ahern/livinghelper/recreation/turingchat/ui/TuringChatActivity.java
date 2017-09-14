@@ -165,6 +165,9 @@ public class TuringChatActivity extends AppCompatActivity {
 
                         @Override
                         public void onResponse(String response, int id) {
+                            if (isFinishing()){
+                                return;
+                            }
                             TuringRequestDataEntity entity = (TuringRequestDataEntity) JsonUtil.stringToObject(response, TuringRequestDataEntity.class);
                             switch (Integer.parseInt(entity.getCode())) {
                                 case 10000:

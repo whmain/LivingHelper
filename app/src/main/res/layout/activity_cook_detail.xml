@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ahern.livinghelper.recreation.cookbook.ui.CookDetailActivity">
+    tools:context=".tool.cookbook.ui.CookDetailActivity">
 
 
     <android.support.v7.widget.Toolbar
@@ -50,7 +50,8 @@
                     android:layout_height="24dp"
                     android:text="菜名:"
                     android:textSize="16sp"
-                    android:textColor="#111111"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"/>
                 <TextView
@@ -73,7 +74,8 @@
                     android:layout_height="24dp"
                     android:text="用餐人数:"
                     android:textSize="16sp"
-                    android:textColor="#111111"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"/>
                 <TextView
@@ -96,7 +98,8 @@
                     android:layout_height="24dp"
                     android:text="准备时间:"
                     android:textSize="16sp"
-                    android:textColor="#111111"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"/>
                 <TextView
@@ -119,7 +122,8 @@
                     android:layout_height="24dp"
                     android:text="烹饪时间:"
                     android:textSize="16sp"
-                    android:textColor="#111111"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"/>
                 <TextView
@@ -143,7 +147,8 @@
                     android:layout_height="24dp"
                     android:text="标签:"
                     android:textSize="16sp"
-                    android:textColor="#111111"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"/>
                 <TextView
@@ -167,7 +172,8 @@
                     android:layout_height="24dp"
                     android:text="介绍:"
                     android:textSize="16sp"
-                    android:textColor="#111111"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"/>
                 <TextView
@@ -185,14 +191,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="24dp"
+                    android:layout_height="wrap_content"
                     android:text="主料:"
                     android:textSize="16sp"
-                    android:textColor="#111111"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/textView"/>
+
                 <TextView
                     android:id="@+id/tv_cook_detail_main_ingredient"
                     android:layout_width="0dp"
@@ -213,7 +223,8 @@
                     android:layout_height="24dp"
                     android:text="配料:"
                     android:textSize="16sp"
-                    android:textColor="#111111"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"/>
                 <TextView
@@ -233,16 +244,15 @@
                 android:layout_height="24dp"
                 android:text="制作过程:"
                 android:textSize="16sp"
-                android:textColor="#111111"
+                android:textColor="#000000"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:layout_marginLeft="10dp"/>
 
             <com.ahern.livinghelper.common.view.AdaptHeightRecyclerView
                 android:id="@+id/rv_cook_detail_process"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_height="match_parent"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="20dp"

@@ -43,7 +43,9 @@
             android:layout_toRightOf="@+id/iv_recreation_adapter_item_icon"
             android:text="回顾历史的长河，历史是生活的一面镜子"
             android:textColor="#333333"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:maxLines="2"
+            android:ellipsize="end"/>
     </RelativeLayout>
 
 

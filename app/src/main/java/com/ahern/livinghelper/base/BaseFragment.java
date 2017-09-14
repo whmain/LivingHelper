@@ -3,6 +3,7 @@ package com.ahern.livinghelper.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.ahern.livinghelper.common.utils.LogUtil;
 
@@ -15,30 +16,51 @@ import com.ahern.livinghelper.common.utils.LogUtil;
 public class BaseFragment extends Fragment {
 
     protected boolean isViewCreated = false;    //视图是否被创建
-    protected boolean isFirstLoadData = true; //是否是第一次加载数据
+    protected boolean isViewVisible = false;  //该fragment对于用户是否可见
+//    protected boolean isLoadCompleted = false;  //数据是否加载完成,应在子类的loadData方法中判断
     private String TAG = "BaseFragment";
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (getUserVisibleHint()){
+            isViewVisible = true;
             lazyLoadData();
+        }else{
+           isViewVisible = false;
         }
     }
 
 
+    //视图创建好之后，应将isViewCreated = true ; 视图销毁时，应将isViewCreated = false
+
+    protected void  lazyLoadData(){
+        if (isViewVisible && isViewCreated ){
+            loadData();
+        }
+    }
+
     /**
      * 懒加载方法
      * 子类Fragment可以在其中进行耗时操作
+     * Ps:
+     * 1.更新UI时应当判断isViewCreated。
      */
-    protected void  lazyLoadData(){
+    protected  void loadData(){
 
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isViewCreated = true;
+        LogUtil.e(TAG, getClass().getSimpleName()+"--->onViewCreated",true);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        LogUtil.e(TAG, getClass().getSimpleName()+"--->onCreateView",true);
+        LogUtil.e(TAG, getClass().getSimpleName()+"--->onActivityCreated",true);
     }
 
     @Override
@@ -68,6 +90,7 @@ public class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        isViewCreated = false;
         LogUtil.e(TAG, getClass().getSimpleName()+"--->onDestroyView",true);
 
     }

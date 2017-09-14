@@ -9,7 +9,7 @@
         android:name=".base.LivingHelperApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/app_names"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <meta-data
@@ -21,7 +21,7 @@
 
         <activity
             android:name=".main.SplashActivity"
-            android:theme="@style/NotitleTheme">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -34,25 +34,30 @@
         </activity>
         <activity android:name=".recreation.history.ui.HistoryDetailActivity">
         </activity>
-        <activity android:name=".recreation.constellation.ui.ConstellationActivity">
+        <activity android:name=".tool.oneiromancy.ui.ConstellationActivity">
         </activity>
-        <activity android:name=".recreation.constellation.ui.DreamDetailActivity">
+        <activity android:name=".tool.oneiromancy.ui.DreamDetailActivity">
         </activity>
         <activity android:name=".recreation.turingchat.ui.TuringChatActivity">
         </activity>
         <activity android:name=".recreation.turingchat.ui.ChatWebActivity">
         </activity>
-
-        <activity android:name=".recreation.cookbook.ui.CookBookListActivity">
+        <activity android:name=".tool.cookbook.ui.CookBookListActivity">
         </activity>
-        <activity android:name=".recreation.cookbook.ui.CookDetailActivity">
+        <activity android:name=".tool.cookbook.ui.CookDetailActivity">
         </activity>
         <activity android:name=".base.TestActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN"/> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".recreation.newschannel.ui.NewsListActivity">
+        </activity>
+        <activity android:name=".recreation.newschannel.ui.NewsDetailActivity">
         </activity>
     </application>
 

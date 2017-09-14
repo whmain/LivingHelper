@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.ahern.livinghelper.R;
 import com.ahern.livinghelper.main.adapter.MainPageAdapter;
 import com.ahern.livinghelper.recreation.main.ui.RecreationFragment;
-import com.ahern.livinghelper.tools.ToolsFragment;
+import com.ahern.livinghelper.tool.main.ToolFragment;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.jaeger.library.StatusBarUtil;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 .addItem(new BottomNavigationItem(R.drawable.ic_recreation_selected, R.string.tab_title_recreation)
                         .setInactiveIconResource(R.drawable.ic_recreation)
                         .setActiveColorResource(R.color.color_tabbar_default))
-                .addItem(new BottomNavigationItem(R.drawable.ic_tools_selected, R.string.tab_title_tools)
+                .addItem(new BottomNavigationItem(R.drawable.ic_tools_selected, R.string.tab_title_tool)
                         .setInactiveIconResource(R.drawable.ic_tools)
                         .setActiveColorResource(R.color.color_tabbar_default))
                 .initialise();
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     public void initViewPager() {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new RecreationFragment());
-        fragments.add(new ToolsFragment());
+        fragments.add(new ToolFragment());
 
         mViewPager.setAdapter(new MainPageAdapter(getSupportFragmentManager(), fragments));
         mViewPager.addOnPageChangeListener(mPageChangeListener);

@@ -22,6 +22,7 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -157,10 +158,20 @@ public class HistoryActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
+                        if (isFinishing()){
+                            return;
+                        }
                         mHistoryPb.setVisibility(View.GONE);
                         HistoryRequestDataEntity entity = (HistoryRequestDataEntity) JsonUtil.stringToObject(response, HistoryRequestDataEntity.class);
-                        List<HistoryListEntity> list = entity.getResult();
-                        mAdapter.addData(list, true);
+//                        List<HistoryListEntity> list = entity.getResult();
+                        //由于api给的资源部分没有图片url,故将其删除
+                        List<HistoryListEntity> currentList = new ArrayList<>();
+                        for (HistoryListEntity bean:entity.getResult()) {
+                            if (!(bean.getPicUrl().equals(""))){
+                                currentList.add(bean);
+                            }
+                        }
+                        mAdapter.addData(currentList, true);
                         mAdapter.notifyDataSetChanged();
                         mHistoryListRv.smoothScrollToPosition(0);
                     }

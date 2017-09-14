@@ -6,7 +6,7 @@
     android:id="@+id/activity_cook_book_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ahern.livinghelper.recreation.cookbook.ui.CookBookListActivity">
+    tools:context=".tool.cookbook.ui.CookBookListActivity">
 
 
     <android.support.v7.widget.Toolbar

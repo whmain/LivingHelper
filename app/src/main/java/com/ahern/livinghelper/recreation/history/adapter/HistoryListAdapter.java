@@ -1,6 +1,7 @@
 package com.ahern.livinghelper.recreation.history.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,9 @@ import com.ahern.livinghelper.R;
 import com.ahern.livinghelper.common.utils.LogUtil;
 import com.ahern.livinghelper.recreation.history.model.HistoryListEntity;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,8 +63,15 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         holder.itemView.setOnClickListener(this);
         holder.itemView.setTag(position);
         LogUtil.i(LogTag,list.get(position).getTitle()+list.get(position).getPicUrl(),true);
-        Glide.with(context).load(list.get(position).getPicUrl()).placeholder(R.mipmap.ic_launcher).into(holder.mIconIv);
-       
+//        Glide.with(context).load(list.get(position).getPicUrl()).placeholder(R.mipmap.ic_launcher).into(holder.mIconIv);
+        //glide重复加载图片时，图片会被缩小,因此采用下面方式设定好mImageTv的宽高
+        Glide.with(context).load(list.get(position).getPicUrl()).asBitmap().placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(new SimpleTarget<Bitmap>(140,140) {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        holder.mIconIv.setImageBitmap(resource);
+                    }
+                });
     }
 
     @Override

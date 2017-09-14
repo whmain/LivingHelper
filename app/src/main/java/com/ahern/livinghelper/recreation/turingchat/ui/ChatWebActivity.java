@@ -14,7 +14,6 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 import com.ahern.livinghelper.R;
-import com.ahern.livinghelper.common.utils.LogUtil;
 import com.jaeger.library.StatusBarUtil;
 
 import butterknife.BindView;
@@ -51,7 +50,7 @@ public class ChatWebActivity extends AppCompatActivity {
         mWebView.setLayoutParams(params);
         mWebPageLl.addView(mWebView);
 
-        LogUtil.d("ChatWeb", "url:" + url, true);
+
         // 获取WebView属性
         WebSettings websettings = mWebView.getSettings();
         websettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //设置缓存

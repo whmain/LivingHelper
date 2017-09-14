@@ -107,6 +107,9 @@ public class HistoryDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
+                        if (isFinishing()){
+                            return;
+                        }
                         HistoryDetailRequestEntity result = (HistoryDetailRequestEntity) JsonUtil.stringToObject(response,HistoryDetailRequestEntity.class);
                         List<HistoryDetailEntity> list = result.getResult();
                         Log.d("Detail",list.size()+"------------aaaaa");

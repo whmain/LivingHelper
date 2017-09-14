@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">LivingHelper</string>
+    <string name="app_names">生活小助手</string>
 
 
     <!-- MainActivity -->
     <string name="tab_title_recreation">娱乐</string>
-    <string name="tab_title_tools">工具</string>
+    <string name="tab_title_tool">工具</string>
 
 
     <!-- RecreationFragment -->
@@ -12,10 +12,15 @@
     <string name="item_turing">图灵机器人</string>
     <string name="item_cookbook">菜谱大全</string>
     <string name="item_oneiromancy">周公解梦</string>
-
+    <string name="item_news">新闻频道</string>
 
     <string name="item_introduction_history">回顾历史的长河，历史是生活的一面镜子</string>
     <string name="item_introduction_turing">图灵机器人是中文语境下智能度最高的机器人大脑</string>
     <string name="item_introduction_cookbook">万种菜谱，包含主料、辅料，制作流程。可按分类、关键词检索</string>
     <string name="item_introduction_oneiromancy">周公解梦,周公解梦大全,周公解梦查询，免费周公解梦</string>
+    <string name="item_introduction_news">头条、新闻、财经、体育、娱乐、军事等频道热门新闻。</string>
+
+
+    <!-- ToolsFragment -->
+
 </resources>
