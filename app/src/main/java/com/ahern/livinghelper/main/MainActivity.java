@@ -6,9 +6,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.ahern.livinghelper.R;
 import com.ahern.livinghelper.main.adapter.MainPageAdapter;
@@ -57,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+
     }
 
     /**
@@ -126,27 +124,27 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//
+//        return true;
+//    }
 
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.action_share:
-                Toast.makeText(this, "share", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.action_navigation:
-                Toast.makeText(this, "navigation", Toast.LENGTH_SHORT).show();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//
+//            case R.id.action_share:
+//                Toast.makeText(this, "share", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.action_navigation:
+//                Toast.makeText(this, "navigation", Toast.LENGTH_SHORT).show();
+//                break;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
 
 }

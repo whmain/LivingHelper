@@ -14,5 +14,12 @@ public class LivingHelperApplication extends Application {
     public void onCreate() {
         super.onCreate();
         LogUtil.OpenLog = true;
+
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+
     }
 }
