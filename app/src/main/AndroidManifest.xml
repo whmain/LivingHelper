@@ -3,7 +3,7 @@
           package="com.ahern.livinghelper">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATES"/>
 
     <application
         android:name=".base.LivingHelperApplication"
@@ -18,19 +18,16 @@
         <meta-data
             android:name="dream_key"
             android:value="468ea20f74584b11140e7dfea9cfc952"/>
-        <meta-data
-            android:name="YOUMI_CHANNEL"
-            android:value="10190">
-        </meta-data>
+
 
         <activity
             android:name=".main.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".main.MainActivity">
         </activity>
@@ -56,28 +53,7 @@
         <activity android:name=".recreation.newschannel.ui.NewsDetailActivity">
         </activity>
 
-        <activity android:name=".main.FirstActivity"
-                  android:screenOrientation="portrait"
-                  android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
-        <!-- 有米SDK为了兼容Android N应用间共享文件行为变更而需要配置的FileProvider -->
-        <!-- 这里主要为授予有米SDK拥有打开apk安装界面的功能 -->
-        <!-- 请务必修改 android:authorities 为贵应用的标识，一般为 包名.fileProvider -->
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.ahern.livinghelper"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_provider"/>
-        </provider>
 
 
     </application>

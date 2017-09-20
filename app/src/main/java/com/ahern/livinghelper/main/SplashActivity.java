@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.ahern.livinghelper.R;
 
-import net.youmi.android.nm.sp.SpotManager;
-
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -25,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
                         public void run() {
                             Intent intent = new Intent(SplashActivity.this,MainActivity.class);
                             startActivity(intent);
-                            SpotManager.getInstance(SplashActivity.this).onAppExit();
+
                             SplashActivity.this.finish();
                         }
                     });
