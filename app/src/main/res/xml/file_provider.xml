@@ -8,6 +8,6 @@
         name="apk1"
         path="." />
     <external-path
-        name="apk2s"
+        name="apk2"
         path="." />
 </path >
